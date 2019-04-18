@@ -1,0 +1,25 @@
+//插入排序就是把当前元素插到当前元素的前面，如果当前元素比前面的元素小，则交换两元素的顺序
+//当索引到达右端时，则排序完成
+
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+bool Lesser(int a, int b) {
+	return a < b ? true : false;
+}
+void Swap(int &a, int &b) {
+	int temp = a;
+	a = b;
+	b = temp;
+}
+void InsertSort(vector<int> &arr) {
+	for (int i = 1; i < arr.size(); i++) {
+		//将a[i]插入到a[i-1],a[i-2],a[i-3]....
+		for (int j = i; j > 0 && Lesser(arr[j], arr[j - 1]); j--) {
+			Swap(arr[j], arr[j - 1]);
+		}
+
+	}
+}
