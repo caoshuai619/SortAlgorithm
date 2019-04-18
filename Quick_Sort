@@ -1,7 +1,7 @@
 //这是个快排
 //快排的思想就是找到一个privot ,在privot左边的全部小于privot,在privot右边的全都大于privot
-//快排背后的思想是 ，先找到一个最大的，然后其余的按照最大的排序
-// 2 10 9 8 100 65 89      --> 2 10 9 8 100 65 89 INT_MAX
+//快排背后的思想是 ，先找到一个最大的，然后其余的按照最大依次排序
+// 2 10 9 8 100 65 89      --> 2 10 9 8 100 65 89 INT_MAX   //INT_MAX是我们自己设置的最大标志位，
 
 int Partition(int * arr,int low,int high){
 		int privot = arr[low];
