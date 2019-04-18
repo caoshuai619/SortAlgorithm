@@ -1,0 +1,25 @@
+//选择排序比较简单。
+//它的思想就是 找到数组中元素最小的，将它和数组的第一个位置进行交换，如果第一个位置就是最小的，那么就和自己交换。
+//时间复杂度:O(n^2)
+//特点:运行时间和输入无关。不管是有序的还是无序的，排序的时间不变  数组中元素的移动也是最少的
+
+#include <iostream>
+#include <vector>
+using namespace std;
+void Swap(int &a, int &b) {
+	int temp = a;
+	a = b;
+	b = temp;
+}
+void Select_Sort(vector<int> &arr) {
+	int min;
+	int j;
+	for (int i = 0; i < arr.size(); i++) {
+		min = i;
+		for (j = i + 1; j < arr.size(); j++) {
+			if (arr[i]> arr[j]) min = j;
+		}
+		Swap(arr[i], arr[min]);
+
+	}
+}
