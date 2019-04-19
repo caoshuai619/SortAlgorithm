@@ -63,4 +63,4 @@ void Sort(vector<int> &a, int low, int high) {
 }
 
 
-如果在Merge()函数内，使用插入排序来处理小数组的问题，则速度会快上10%--15%  如果每次进行检查a[middle] <= a[middle+1] 则说明序列是排好的，可以跳过
+
