@@ -1,0 +1,66 @@
+//归并排序运用的思想是分治的思想，把大问题分解成小问题，小的问题排序，然后在合并，最后得到正确的结果
+//时间复杂夫O(NlgN)
+//解决问题的思路是 自上而下，然后最后自下而上的进行归并，最后得到结果
+//对于解决大规模的数据
+//优化
+//如果在Merge()函数内，使用插入排序来处理小数组的问题，则速度会快上10%--15%  
+//如果每次进行检查a[middle] <= a[middle+1] 则说明序列是排好的，可以跳过
+
+#include <iostream>
+#include <vector>
+#include <random>
+#include <ctime>
+using namespace std;
+//归并排序  从上到下，先分成一小部分一小部分，每个小部分进行排序，最后合并到一块
+
+void Merge(vector<int> &a, int low, int middle, int high);
+bool Lessor(int a, int b);
+void Sort(vector<int> &a, int low,int high);
+void Swap(int &a, int &b);
+void Swap(int &a, int &b) {
+	int temp = a;
+	a = b;
+	b = temp;
+}
+bool Lessor(int a, int b) {
+	return a < b ? true : false;
+}
+
+void Merge(vector<int> &a, int low, int middle, int high) {
+	//构造一个辅助的数组
+	if (a[middle] <= a[middle + 1]) return;  //做一个简单的判断，如果成立，则可以退出
+	vector<int> temp(a.size());
+	int i = low, j = middle + 1;
+	for (int i = low; i <=high; i++) {
+		temp[i] = a[i];
+	}
+	//if (high < 15) {
+	//	//使用插入排序
+	//	for (int k = 1; k <= high; k++) {
+	//		for (int m = k; m > 0 && Lessor(a[m], a[m - 1]); m--) {
+	//			Swap(a[m], a[m - 1]);
+	//		}
+	//	}
+	//	return;
+	//}
+	for (int k = low; k <= high; k++) {
+		if (i > middle)  a[k] = temp[j++];
+		else if (j > high)  a[k] = temp[i++];
+		else if (Lessor(temp[j], temp[i])) a[k] = temp[j++];
+		else a[k] = temp[i++];
+	}
+
+}
+
+
+void Sort(vector<int> &a, int low, int high) {
+	if (high <= low) return;
+	int middle = low + (high - low) / 2;
+	Sort(a, low, middle);
+	Sort(a, middle + 1, high);
+	Merge(a, low, middle, high);
+
+}
+
+
+如果在Merge()函数内，使用插入排序来处理小数组的问题，则速度会快上10%--15%  如果每次进行检查a[middle] <= a[middle+1] 则说明序列是排好的，可以跳过
